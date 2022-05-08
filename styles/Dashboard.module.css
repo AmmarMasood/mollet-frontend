@@ -1,0 +1,16 @@
+.container {
+  height: 80vh;
+  width: 100vw;
+  padding: 50px;
+}
+.userInfoContainer {
+  padding: 0 50px;
+}
+
+.userInfoContainer > h2 {
+}
+
+.userInfoContainer > h3 {
+}
+.userInfoContainer > h1 {
+}

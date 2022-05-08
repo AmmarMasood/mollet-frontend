@@ -1,0 +1,26 @@
+.container {
+  padding: 20px;
+}
+.container > h3 {
+  font-size: 40px;
+}
+.container > h3 > span {
+  font-size: 60px;
+}
+
+.container > p {
+}
+
+.enterInvestmentContainer {
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+
+.enterInvestmentContainer > form > div > div {
+  text-align: center !important;
+}

@@ -1,9 +1,15 @@
+:root {
+  --primary-color: rgba(237, 41, 69, 1);
+  --primary-color-light: rgba(237, 41, 69, 0.5);
+  --primary-black: #222d39;
+  --primary-dark-blue: #061b28;
+  --white: rgba(255, 255, 255, 1);
+}
 html,
 body {
   padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #fefefa;
+  font-family: "Inter", sans-serif;
 }
 
 a {
@@ -13,4 +19,7 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.ant-spin-dot-item {
+  background-color: var(--primary-color) !important;
 }

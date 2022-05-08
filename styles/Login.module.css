@@ -1,0 +1,28 @@
+.container {
+  margin: 0 auto;
+  /* width: 800px; */
+  height: 90vh;
+  /* text-align: center; */
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container > div:nth-child(1) {
+  width: 500px;
+}
+
+.container > div:nth-child(2) {
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid gray;
+}
+
+.container > div > h2 {
+  font-size: 35px;
+  margin-bottom: 30px;
+}
+.error {
+  color: red;
+  margin: 10px 0;
+}

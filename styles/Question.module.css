@@ -1,0 +1,24 @@
+.container {
+  /* border: 2px solid red; */
+}
+
+.options {
+  /* border: 2px solid green; */
+  /* width: 100px; */
+  /* border: 2px solid green; */
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 20px;
+}
+
+.options > span {
+  font-size: 18px;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
