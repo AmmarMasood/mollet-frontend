@@ -69,9 +69,9 @@ function Index({ token }) {
           <Input />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 16 }}>
+        <Form.Item style={{ float: "right" }}>
           {loading ? (
-            <Loader style={{ marginLeft: "120px" }} />
+            <Loader />
           ) : (
             <Button
               // onClick={onFinish}

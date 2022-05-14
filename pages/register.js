@@ -55,9 +55,9 @@ function Index() {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 19 }}>
+        <Form.Item style={{ float: "right" }}>
           {loading ? (
-            <Loader style={{ marginLeft: "60px" }} />
+            <Loader />
           ) : (
             <Button
               // onClick={onFinish}

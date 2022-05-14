@@ -16,10 +16,10 @@ function Questionaire({ data, token }) {
   };
 
   const goBackward = () => {
-    console.log(data.length);
-    if (data.length === 12) {
-      carousel.current.prev();
-    }
+    // console.log(data.length);
+    // if (data.length === 12) {
+    carousel.current.prev();
+    // }
   };
 
   const onAnswerSelect = (questionIndex, answerIndex, nscore) => {

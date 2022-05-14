@@ -5,6 +5,7 @@ import SentimentSection from "@/components/News/SentimentSection";
 import React, { useState, useEffect, useContext } from "react";
 import { getMarketPerformance, getNews } from "@/apis/News/news";
 import { toast, ToastContainer } from "react-toastify";
+import MarketPerformance from "@/components/News/MarketPerformance";
 
 const channels = [
   {
@@ -29,6 +30,8 @@ function index() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sentimentLoading, setSentimentLoading] = useState(false);
+  const [performanceLoading, setPerformanceLoading] = useState(false);
+
   const [currentChannel, setCurrentChannel] = useState(channels[0].alias);
 
   const [showSentiment, setShowSentiment] = useState(false);
@@ -56,7 +59,7 @@ function index() {
   };
 
   const getMarketPerformanceFromBack = async () => {
-    setSentimentLoading(true);
+    setPerformanceLoading(true);
     const res = await getMarketPerformance();
     if (res.success) {
       console.log(res.data);
@@ -64,10 +67,14 @@ function index() {
     } else {
       toast.error(res.message);
     }
-    setSentimentLoading(false);
+    setPerformanceLoading(false);
   };
+  const getMarketSentiment = () => {};
   useEffect(() => {
-    showSentiment && getMarketPerformanceFromBack();
+    getMarketPerformanceFromBack();
+  }, []);
+  useEffect(() => {
+    showSentiment && getMarketSentiment();
   }, [showSentiment]);
   useEffect(() => {
     currentChannel && getNewsFromBack();
@@ -77,6 +84,10 @@ function index() {
       childern={
         <>
           <ToastContainer />
+          <MarketPerformance
+            performance={marketPerformance}
+            loading={performanceLoading}
+          />
           <TopHeader
             channels={channels}
             loading={loading}
@@ -85,10 +96,7 @@ function index() {
             showSentiment={showSentiment}
           />
           {showSentiment ? (
-            <SentimentSection
-              loading={sentimentLoading}
-              performance={marketPerformance}
-            />
+            <SentimentSection loading={sentimentLoading} sentiment={[]} />
           ) : (
             <ExploreSection news={news} loading={loading} />
           )}

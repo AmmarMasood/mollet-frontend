@@ -12,6 +12,24 @@
   grid-gap: 20px;
 }
 
+@media (max-width: 550px) {
+  .container > h1 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .options {
+    /* border: 2px solid green; */
+    /* width: 100px; */
+    /* border: 2px solid green; */
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+  }
+  .options > span {
+    font-size: 14px;
+  }
+}
 .options > span {
   font-size: 18px;
   min-height: 150px;

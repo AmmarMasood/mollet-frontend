@@ -7,6 +7,16 @@
   cursor: pointer;
 }
 
+@media (max-width: 550px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+
 .container > img {
   height: 150px;
   width: 180px;

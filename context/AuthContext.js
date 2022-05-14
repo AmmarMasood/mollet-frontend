@@ -114,8 +114,6 @@ export const AuthProvider = ({ children }) => {
 
     if (res.ok) {
       setUser(data.user);
-      console.log("YO MR WHITE", data);
-      //   router.push("/account/dashboard");
     } else {
       setUser(null);
     }
