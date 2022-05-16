@@ -7,4 +7,15 @@
   margin: 0 auto;
   /* border: 2px solid blue; */
   min-height: 90vh;
+  z-index: 2;
+}
+.backgroundStyle {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: var(--primary-color-light);
+  top: 0;
+  left: 0;
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  /* z-index: 1; */
 }

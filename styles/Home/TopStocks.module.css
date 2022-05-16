@@ -56,3 +56,9 @@
   width: 60%;
   height: 60%;
 }
+@media (max-width: 550px) {
+  .container > h2 {
+    margin-left: 0px;
+    margin: 20px;
+  }
+}

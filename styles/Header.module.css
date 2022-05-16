@@ -4,6 +4,8 @@
   align-items: center;
   color: var(--primary-color);
   padding: 10px 20px;
+  z-index: 2;
+  position: relative;
 
   /* border: 2px solid yellow; */
 }

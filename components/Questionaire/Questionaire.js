@@ -34,6 +34,7 @@ function Questionaire({ data, token }) {
 
   return (
     <div className={styles.container}>
+      <div className={styles.backgroundStyle}></div>
       <Carousel dotPosition={"bottom"} dots={false} ref={carousel}>
         {data.map((detail, i) => (
           <>
@@ -53,7 +54,11 @@ function Questionaire({ data, token }) {
               />
             )}
 
-            {i > 0 && <label onClick={goBackward}>Back</label>}
+            {i > 0 && (
+              <label onClick={goBackward} style={{ color: "#fff" }}>
+                Back
+              </label>
+            )}
           </>
         ))}
       </Carousel>
