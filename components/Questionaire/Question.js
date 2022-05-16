@@ -8,6 +8,7 @@ function Question({ detail, onClick, index, selectedAnswer }) {
       <div className={styles.options}>
         {detail.answers.map((a, i) => (
           <span
+            key={i}
             style={{
               border:
                 selectedAnswer === i

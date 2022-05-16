@@ -43,7 +43,7 @@ function TopStocks() {
             //   direction={"ltr"}
             //   velocity={10}
             // >
-            <div className={styles.company}>
+            <div className={styles.company} key={i}>
               <div className={styles.circle}>
                 <img src={link} alt="" className={styles.logo} />
               </div>

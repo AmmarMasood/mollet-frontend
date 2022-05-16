@@ -26,7 +26,7 @@ const channels = [
   },
 ];
 
-function index() {
+function Index() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sentimentLoading, setSentimentLoading] = useState(false);
@@ -106,4 +106,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

@@ -7,7 +7,7 @@ import { parseCookies, showConfirm } from "@/helpers/index";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 
-function dashboard({ token }) {
+function Dashboard({ token }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { user, completeProfile, logout } = useContext(AuthContext);
@@ -81,7 +81,7 @@ function dashboard({ token }) {
   );
 }
 
-export default dashboard;
+export default Dashboard;
 
 export async function getServerSideProps({ req }) {
   const { token } = parseCookies(req);

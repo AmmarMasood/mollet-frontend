@@ -20,6 +20,7 @@ function MarketPerformance({ performance, loading }) {
               //     radius={50}
               //   >
               <div
+                key={i}
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
