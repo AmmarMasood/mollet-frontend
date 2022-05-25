@@ -6,45 +6,58 @@ import { AuthContext } from "@/context/AuthContext";
 import Loader from "../Loader";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createPortfolio } from "@/apis/Portfolio/portfolio";
 
 function FinalOverview({ finalScore, goBackward, token }) {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [portFolioType, setPortFolioType] = useState({ name: "", type: "" });
   const { completeProfile } = useContext(AuthContext);
-
+  //
   useEffect(() => {
     const s = finalScore.reduce((partialSum, a) => partialSum + a, 0);
     let temp = { name: "", type: "" };
     if (s <= 18) {
-      temp = { name: "Low risk tolerance", type: "LOW_RISK" };
+      temp = { name: "Aggresive", type: "AGGRESIVE" };
     } else if (s >= 19 && s <= 22) {
       temp = {
-        name: "Below Average risk tolerance",
-        type: "BELOW_AVERAGE_RISK",
+        name: "Semi Aggresive",
+        type: "SEMI_AGGRESIVE",
       };
     } else if (s >= 23 && s <= 28) {
-      temp = { name: "Average risk tolerance", type: "AVERAGE_RISK" };
+      temp = { name: "Moderate", type: "MODERATE" };
     } else if (s >= 29 && s <= 32) {
-      temp = { name: "Above average tolerance", type: "ABOVE_AVERAGE_RISK" };
+      temp = { name: "Above average tolerance", type: "BELOW_AVERAGE" };
     } else if (s >= 33) {
-      temp = { name: "High risk tolerance", type: "HIGH_RISK" };
+      temp = { name: "High risk tolerance", type: "CONSERVATIVE" };
     }
     setPortFolioType(temp);
     setTotal(s);
   }, [finalScore]);
 
   const onFinish = async (values) => {
+    const risk_score = (total / 52) * 5;
+    const t = (3.16 - 1.25) / (risk_score * Math.pow(7.67, 2));
+    const yScore = Math.min(t * 100, 1);
     if (token && values.invested_amount && portFolioType.type) {
       setLoading(true);
 
-      const res = await completeProfile(token, {
-        ...values,
-        portfolio_type: portFolioType.type,
-        risk_score: total,
-      });
-      if (!res.success) {
-        toast.error(res.message);
+      const res1 = await createPortfolio(token, yScore, portFolioType.type);
+      // console.log("res1", res1);
+      if (res1.success) {
+        const res = await completeProfile(token, {
+          ...values,
+          portfolio_type: portFolioType.type,
+          risk_score,
+          portfolio_id: res1.data.id,
+        });
+        if (!res1.success) {
+          toast.error(res.message);
+        }
+      }
+
+      if (!res1.success) {
+        toast.error(res1.message);
       }
       setLoading(false);
     }

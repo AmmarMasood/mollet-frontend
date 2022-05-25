@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "@/components/Layout";
 import Questionaire from "@/components/Questionaire/Questionaire";
 import { parseCookies } from "../helpers";
+import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/router";
 
 const questions = [
   {
@@ -13,7 +15,7 @@ const questions = [
       "Cautious",
       "A real risk avoider",
     ],
-    points: [4, 3, 2, 1],
+    points: [1, 2, 3, 4],
   },
   {
     question:
@@ -24,7 +26,7 @@ const questions = [
       "A 25% chance at winning 10,000",
       "A 5% chance at winning 100,000",
     ],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question:
@@ -35,7 +37,7 @@ const questions = [
       "Go as scheduled, reasoning that you need the time to prepare for a job search",
       "Extend your vacation, because this might be your last chance to go first-class",
     ],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question:
@@ -45,7 +47,7 @@ const questions = [
       "Invest it in safe high-quality bonds or bond mutual funds.",
       "Invest it in stocks or stock mutual funds",
     ],
-    points: [1, 2, 3],
+    points: [3, 2, 1],
   },
   {
     question:
@@ -55,13 +57,13 @@ const questions = [
       "Somewhat comfortable",
       "Very comfortable",
     ],
-    points: [1, 2, 3],
+    points: [3, 2, 1],
   },
   {
     question:
       "When you think of the word “risk” which of the following words comes to mind first?",
     answers: ["Loss", "Uncertainty", "Opportunity", "Thrill"],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question:
@@ -72,7 +74,7 @@ const questions = [
       "Sell the bonds and put the total proceeds into hard assets",
       "Sell the bonds, put all the money into hard assets, and borrow additional money to buy more",
     ],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question:
@@ -83,7 +85,7 @@ const questions = [
       "2,600 gain best case; 800 loss worst case",
       "4,800 gain best case; 2,400 loss worst case",
     ],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question:
@@ -92,7 +94,7 @@ const questions = [
       "A sure gain of 500",
       "A 50% chance to gain 1,000 and a 50% chance to gain nothing",
     ],
-    points: [1, 3],
+    points: [3, 1],
   },
   {
     question:
@@ -101,7 +103,7 @@ const questions = [
       "A sure loss of 500",
       "A 50% chance to lose 1,000 and a 50% chance to lose nothing",
     ],
-    points: [1, 3],
+    points: [3, 1],
   },
   {
     question:
@@ -112,7 +114,7 @@ const questions = [
       "	A portfolio of 15 common stocks",
       "Commodities like gold, silver, and oil",
     ],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question:
@@ -122,7 +124,7 @@ const questions = [
       "30% in low-risk investments 40% in medium-risk investments 30% in high-risk investments",
       "10% in low-risk investments 40% in medium-risk investments 50% in high-risk investments",
     ],
-    points: [1, 2, 3],
+    points: [3, 2, 1],
   },
   {
     question:
@@ -133,7 +135,7 @@ const questions = [
       "Three month’s salary",
       "Six month’s salary",
     ],
-    points: [1, 2, 3, 4],
+    points: [4, 3, 2, 1],
   },
   {
     question: "",
@@ -143,6 +145,18 @@ const questions = [
 ];
 
 function Index({ token }) {
+  const router = useRouter();
+  const { user } = useContext(AuthContext);
+  // useEffect(() => {
+  //   if (token) {
+  //     if (!user.first_name) {
+  //       router.push("/get-started");
+  //     }
+  //   } else {
+  //     router.push("/register");
+  //   }
+  // }, []);
+
   return <Layout childern={<Questionaire data={questions} token={token} />} />;
 }
 

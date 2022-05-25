@@ -3,9 +3,15 @@ import ExploreSection from "@/components/News/ExploreSection";
 import TopHeader from "@/components/News/TopHeader";
 import SentimentSection from "@/components/News/SentimentSection";
 import React, { useState, useEffect, useContext } from "react";
-import { getMarketPerformance, getNews } from "@/apis/News/news";
+import {
+  getMarketPerformance,
+  getMarketSentimentFromBackend,
+  getNews,
+} from "@/apis/News/news";
 import { toast, ToastContainer } from "react-toastify";
 import MarketPerformance from "@/components/News/MarketPerformance";
+import { parseCookies } from "../helpers";
+import { AuthContext } from "@/context/AuthContext";
 
 const channels = [
   {
@@ -28,6 +34,8 @@ const channels = [
 
 function Index() {
   const [news, setNews] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [marketSentiment, setMarketSentiment] = useState(null);
   const [loading, setLoading] = useState(false);
   const [sentimentLoading, setSentimentLoading] = useState(false);
   const [performanceLoading, setPerformanceLoading] = useState(false);
@@ -47,11 +55,11 @@ function Index() {
     }
   };
 
-  const getNewsFromBack = async () => {
+  const getNewsFromBack = async (setTheIncomingNews) => {
     setLoading(true);
     const res = await getNews(currentChannel);
     if (res.success) {
-      setNews(res.data);
+      setTheIncomingNews(res.data);
     } else {
       toast.error(res.message);
     }
@@ -69,16 +77,33 @@ function Index() {
     }
     setPerformanceLoading(false);
   };
-  const getMarketSentiment = () => {};
+
+  const getMarketSentiment = async () => {
+    if (user) {
+      setSentimentLoading(true);
+      const res = await getNews("br");
+      const headlines = res.data ? res.data.map((n) => n.title) : [];
+      const sentiment = await getMarketSentimentFromBackend(headlines);
+      console.log(sentiment);
+      if (sentiment.success) {
+        setMarketSentiment(sentiment.data);
+      }
+      setSentimentLoading(false);
+    }
+  };
+
   useEffect(() => {
     getMarketPerformanceFromBack();
   }, []);
+
   useEffect(() => {
     showSentiment && getMarketSentiment();
   }, [showSentiment]);
+
   useEffect(() => {
-    currentChannel && getNewsFromBack();
+    currentChannel && getNewsFromBack(setNews);
   }, [currentChannel]);
+
   return (
     <Layout
       childern={
@@ -96,7 +121,11 @@ function Index() {
             showSentiment={showSentiment}
           />
           {showSentiment ? (
-            <SentimentSection loading={sentimentLoading} sentiment={[]} />
+            <SentimentSection
+              loading={sentimentLoading}
+              sentiment={marketSentiment}
+              token={user ? true : false}
+            />
           ) : (
             <ExploreSection news={news} loading={loading} />
           )}
