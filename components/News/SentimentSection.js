@@ -40,9 +40,12 @@ function ExploreSection({ sentiment, loading, token }) {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const options = {
-    labels: {
-      display: true,
-      position: "bottom",
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+      },
     },
   };
 
@@ -70,7 +73,9 @@ function ExploreSection({ sentiment, loading, token }) {
           </>
         ) : (
           <div className={styles.sentimentContainer}>
-            <h2>Market Sentiment.</h2>
+            <h2 style={{ color: "var(--color-primary-blue)" }}>
+              Market Sentiment.
+            </h2>
             <div>
               <Doughnut data={data} options={options} />
             </div>

@@ -18,8 +18,10 @@ export const AuthProvider = ({ children }) => {
     getAllStockFromBackend();
 
     setInterval(() => {
+      console.log("checking 123");
+
       getStockLivePrices();
-    }, 30000);
+    }, 10000);
   }, []);
 
   const getAllStockFromBackend = async () => {
@@ -31,9 +33,10 @@ export const AuthProvider = ({ children }) => {
     // }
   };
 
-  const getStockLivePrices = async () => {
-    if (user && user.portfolio_id && stocks.length > 0) {
-      const tempstocks = [...stocks];
+  const getStockLivePrices = () => {
+    // if (stocks.length > 0) {
+    setTimeout(async () => {
+      const tempstocks = stocks;
       const res = await getStockPrices(stocks);
       if (res) {
         for (var i = 0; i < tempstocks.length; i++) {
@@ -45,7 +48,8 @@ export const AuthProvider = ({ children }) => {
         }
         setStocks(tempstocks);
       }
-    }
+      // }
+    }, 1000);
   };
   // register user
   const register = async ({ email, password }) => {

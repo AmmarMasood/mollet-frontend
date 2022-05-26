@@ -7,7 +7,7 @@
 }
 .channelName {
   /* border: 3px solid green; */
-  background-color: var(--primary-color-light);
+  background-color: var(--primary-color);
   color: var(--white);
   font-size: 20px;
   text-align: center;
@@ -20,11 +20,11 @@
 
 .channelNameSelected {
   /* border: 3px solid green; */
-  background-color: var(--primary-color-light);
+  background-color: var(--primary-dark-blue);
   color: var(--white);
   font-size: 20px;
   text-align: center;
   cursor: pointer;
   /* border: 2px solid transparent; */
-  border: 3px solid var(--primary-color);
+  border: 3px solid var(--primary-dark-blue);
 }

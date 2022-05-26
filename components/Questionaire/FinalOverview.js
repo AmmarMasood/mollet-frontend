@@ -27,16 +27,16 @@ function FinalOverview({ finalScore, goBackward, token }) {
     } else if (s >= 23 && s <= 28) {
       temp = { name: "Moderate", type: "MODERATE" };
     } else if (s >= 29 && s <= 32) {
-      temp = { name: "Above average tolerance", type: "BELOW_AVERAGE" };
+      temp = { name: "Below average tolerance", type: "BELOW_AVERAGE" };
     } else if (s >= 33) {
-      temp = { name: "High risk tolerance", type: "CONSERVATIVE" };
+      temp = { name: "Conservative", type: "CONSERVATIVE" };
     }
     setPortFolioType(temp);
     setTotal(s);
   }, [finalScore]);
 
   const onFinish = async (values) => {
-    const risk_score = (total / 52) * 5;
+    const risk_score = (total / 47) * 5;
     const t = (3.16 - 1.25) / (risk_score * Math.pow(7.67, 2));
     const yScore = Math.min(t * 100, 1);
     if (token && values.invested_amount && portFolioType.type) {
