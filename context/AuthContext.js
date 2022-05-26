@@ -17,9 +17,9 @@ export const AuthProvider = ({ children }) => {
     checkUserLoggedIn();
     getAllStockFromBackend();
 
-    const timer = setInterval(() => {
+    setInterval(() => {
       getStockLivePrices();
-    }, 60000);
+    }, 30000);
   }, []);
 
   const getAllStockFromBackend = async () => {

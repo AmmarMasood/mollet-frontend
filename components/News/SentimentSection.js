@@ -39,14 +39,21 @@ function ExploreSection({ sentiment, loading, token }) {
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
+  const options = {
+    labels: {
+      display: true,
+      position: "bottom",
+    },
+  };
+
   const data = {
     labels: ["Positive News", "Neutral News", "Negative News"],
     datasets: [
       {
         label: "# of Votes",
         data: [senti.positive, senti.neutral, senti.negative],
-        backgroundColor: ["#50C878", "#40E0D0", "#ed2945"],
-        borderColor: ["#50C878", "#40E0D0", "#ed2945"],
+        backgroundColor: ["#50C878", "#848587", "#ed2945"],
+        borderColor: ["#50C878", "#848587", "#ed2945"],
         borderWidth: 2,
       },
     ],
@@ -63,9 +70,9 @@ function ExploreSection({ sentiment, loading, token }) {
           </>
         ) : (
           <div className={styles.sentimentContainer}>
-            <h2>Here is what sentiment looks like.</h2>
+            <h2>Market Sentiment.</h2>
             <div>
-              <Doughnut data={data} />
+              <Doughnut data={data} options={options} />
             </div>
           </div>
         )
