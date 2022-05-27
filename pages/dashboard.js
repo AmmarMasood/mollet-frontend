@@ -69,18 +69,18 @@ function Dashboard({ token }) {
     }
   };
 
-  // useEffect(() => {
-  //   if (token) {
-  //     console.log(user);
-  //     if (!user.first_name) {
-  //       router.push("/get-started");
-  //     } else if (!user.portfolio_id) {
-  //       router.push("/investor-questionaire");
-  //     }
-  //   } else {
-  //     router.push("/register");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (token) {
+      console.log(user);
+      if (!user.first_name) {
+        router.push("/get-started");
+      } else if (!user.portfolio_id) {
+        router.push("/investor-questionaire");
+      }
+    } else {
+      router.push("/register");
+    }
+  }, []);
 
   return (
     <Layout
@@ -228,7 +228,7 @@ function Dashboard({ token }) {
                   pagination={false}
                 />
                 <ToastContainer />
-                <LiveStocksPrices stocks={stocks} />
+                {/* <LiveStocksPrices stocks={stocks} /> */}
                 <Button
                   text="Create A New Portfolio"
                   onClick={() =>

@@ -35,21 +35,21 @@ export const AuthProvider = ({ children }) => {
 
   const getStockLivePrices = () => {
     // if (stocks.length > 0) {
-    setTimeout(async () => {
-      const tempstocks = stocks;
-      const res = await getStockPrices(stocks);
-      if (res) {
-        for (var i = 0; i < tempstocks.length; i++) {
-          for (var j = 0; j < res.length; j++) {
-            if (tempstocks[i].stock_name === res[j].stockName) {
-              tempstocks[i] = { ...tempstocks[i], ...res[j] };
-            }
-          }
-        }
-        setStocks(tempstocks);
-      }
-      // }
-    }, 1000);
+    // setTimeout(async () => {
+    //   const tempstocks = stocks;
+    //   const res = await getStockPrices(stocks);
+    //   if (res) {
+    //     for (var i = 0; i < tempstocks.length; i++) {
+    //       for (var j = 0; j < res.length; j++) {
+    //         if (tempstocks[i].stock_name === res[j].stockName) {
+    //           tempstocks[i] = { ...tempstocks[i], ...res[j] };
+    //         }
+    //       }
+    //     }
+    //     setStocks(tempstocks);
+    //   }
+    //   // }
+    // }, 1000);
   };
   // register user
   const register = async ({ email, password }) => {
